@@ -1,2 +1,3 @@
 ------
 Well, I googled 'how to change commit message after commit' and clicked on the GitHub help page. After that, I used the command git rebase -i Head ~1 which allowed me to change Task 8 to Task 6
+For Task 7, the commit hash is c7e86ad4f1061b0cad9f64a6c9ad26f386bc1168. I was going commit message after commit message and that was a lot, so I googled how to search for terms in git logs. I found on gun.io that grep helps to find the message I need. The command I used was git log --grep mouse and then looked for the one with the specific --no-mouse message.
