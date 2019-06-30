@@ -1,2 +1,3 @@
 Task 6
 ------
+Well, I simply Googled How to change commit message after commite and clicked on the GitHub Help Message forum center thing. After that, it was pretty much simply following instruction
