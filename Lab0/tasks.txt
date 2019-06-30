@@ -1,1 +1,2 @@
 ------
+Well, I googled 'how to change commit message after commit' and clicked on the GitHub help page. After that, I used the command git rebase -i Head ~1 which allowed me to change Task 8 to Task 6
