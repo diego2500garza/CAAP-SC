@@ -4,7 +4,7 @@ F = float(input("Enter temperature in degrees Fahrenheit:"))
 
 C = (9/5*F)+32 
 
-A = C, "degrees Celsius"
+A = C
 
-for A in range(5):
-	print A
+for i in range(5):
+	print A, "degrees Celsius"
