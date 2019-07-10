@@ -7,9 +7,9 @@ class Score(object):
 		raise ValueError ('todo')
 
 	# returns the name associated with score
-	def get_name(self):
+	def get_name(name):
 		raise ValueError ('todo')
 
 	# returns score of player
-	def get_score(self):
+	def get_score(score):
 		raise ValueError ('todo')

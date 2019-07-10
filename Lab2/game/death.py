@@ -9,9 +9,7 @@ class Death(object):
 			"Your mom would be proud...",
 			"Such a loser.",
 			"I have a small puppy that's better at this.",
-			"Better luck next time."
-			# raise ValueError ('todo')
-			]
+			"Better luck next time."]
 	def enter(self):
-		print (Death.quips[randint(0, len(self.quips)- 1)])
+		print (Death.quips)
 		return 'died'

@@ -8,8 +8,8 @@ from scores import Score
 from game_engine import Engine
 
 # global variables to keep track of score, player, and leaderboard
-moves = raise ValueError ('todo')
-name = raise ValueError ('todo')
+moves = 30
+name = (input("Enter name here"))
 leaderboard = raise ValueError ('todo')
 
 # what happens when the game is over
@@ -20,7 +20,7 @@ def game_over(won):
 	global moves
 	score = Score(name, moves)
 	raise ValueError ('todo')
-	print ("\nGame Over.")
+	print ("Game Over.")
 	raise ValueError ('todo')
 
 # initializes/updates global variables and introduces the game.
