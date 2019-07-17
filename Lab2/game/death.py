@@ -11,5 +11,5 @@ class Death(object):
 			"I have a small puppy that's better at this.",
 			"Better luck next time."]
 	def enter(self):
-		print (Death.quips)
+		print (Death.quips[randint(1, len(self.quips)-1)])
 		return 'died'

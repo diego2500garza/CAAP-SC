@@ -4,15 +4,16 @@ from scores import Score
 # leaderboard keeps track of top ten highest ranking players
 class Leaderboard(object):
 	size = 10
-	board = list()
+	board = []
 
-	def __init__(self):
-		for i in range(self.size):
-			self.board.append(i)
+	def __init__(self, name, score):
+		self.board.append([Score(name), Score(score)])
 
 	# prints the leaderboard
 	def print_board(self):
-		raise ValueError ('todo')
+		for i in range(self.size):
+			print("place, name, moves")
+			print ((i+1), board(2*i), board((2*i)+1))
 
 	# checks if given score should be in the leaderboard
 	def update(self, score):
