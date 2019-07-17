@@ -14,7 +14,7 @@ class Scene(object):
 
 class CentralCorridor(Scene):
 	
-	name = raise ValueError ('todo')
+	name = "central_corridor"
 
 	def enter(self):
 		print ("The Gothons of Planet Percal #25 have invaded your ship and destroyed")
@@ -25,7 +25,7 @@ class CentralCorridor(Scene):
 	def action(self):
 		print ("What will you do?")
 		raise ValueError ('todo')
-		choice = input("> ")
+		choice = input("\n1) - shoot \n2) - hit \n3) - insult")
 		if choice == ':q':
 			return self.exit_scene(choice)
 		# this is some exception handling, you don't need to worry about it, 
@@ -35,7 +35,6 @@ class CentralCorridor(Scene):
 		except ValueError:
 		   print("That's not an int!")
 		   return self.exit_scene(self.name)
-
 		if int(choice) == 1:
 			print ("Quick on the draw you yank out your blaster and fire it at the Gothon.")
 			raise ValueError ('todo')
@@ -57,12 +56,12 @@ class CentralCorridor(Scene):
 
 class LaserWeaponArmory(Scene):
 	
-	name = raise ValueError ('todo')
+	name = "armory"
 
 	def enter(self):
 		print ("You do a dive roll into the Weapon Armory, crouch and scan the room")
 		raise ValueError ('todo')
-		return raise ValueError ('todo')
+		return self.action()
 
 	def action(self):
 		print ("There's a keypad lock on the box")
@@ -101,8 +100,8 @@ class LaserWeaponArmory(Scene):
 			raise ValueError ('todo')
 			return self.exit_scene('death') # raise ValueError ('todo')
 
-	def exit_scene(raise ValueError ('todo')):
-		return raise ValueError ('todo')
+	def exit_scene(self, outcome):
+		return outcome
 			
 class TheBridge(Scene):
 	

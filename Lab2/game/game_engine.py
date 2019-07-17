@@ -1,10 +1,11 @@
 # This is the engine of the game, basically runs everything
+from scenes import EscapePod
 
 class Engine(object):
 	
 	# global variables to keep track of game status and live count	
-	escaped = raise ValueError ('todo')
-	lives = raise ValueError ('todo')
+	escaped = 0
+	lives = 5
 
 	# initializes the map in the game
 	def __init__(self, scene_map):
@@ -28,9 +29,9 @@ class Engine(object):
 				raise ValueError ('todo')
 			else:
 				raise ValueError ('todo')
-		if (raise ValueError ('todo')):
+		if (exit_scene):
 			self.escaped = True
-		return raise ValueError ('todo')
+		print("You have escaped, nice")
 
 	# updates the variable to determine whether player won or failed.
 	def won(self):

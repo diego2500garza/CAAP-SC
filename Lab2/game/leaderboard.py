@@ -3,12 +3,12 @@ from scores import Score
 
 # leaderboard keeps track of top ten highest ranking players
 class Leaderboard(object):
-	size = raise ValueError ('todo')
-	board = raise ValueError ('todo')
+	size = 10
+	board = list()
 
 	def __init__(self):
 		for i in range(self.size):
-			self.board.append(raise ValueError ('todo'))
+			self.board.append(i)
 
 	# prints the leaderboard
 	def print_board(self):

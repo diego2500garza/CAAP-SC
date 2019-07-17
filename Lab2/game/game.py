@@ -8,9 +8,11 @@ from scores import Score
 from game_engine import Engine
 
 # global variables to keep track of score, player, and leaderboard
-moves = 30
-name = (input("Enter name here"))
-leaderboard = raise ValueError ('todo')
+moves = 0
+name = ""
+leaderboard = Leaderboard()
+
+
 
 # what happens when the game is over
 # takes in a boolean parameter
@@ -19,9 +21,13 @@ def game_over(won):
 	global name
 	global moves
 	score = Score(name, moves)
-	raise ValueError ('todo')
-	print ("Game Over.")
-	raise ValueError ('todo')
+	if leaderboard.update(score):
+		leaderboard.insert(score)
+	raise NumberOne ("You're Great")
+	print ("\nGame Over.")
+	raise comeback ("Never")
+	name = ""
+	moves = 0
 
 # initializes/updates global variables and introduces the game.
 # starts the Map and the engine.
@@ -31,12 +37,11 @@ def play_game():
 		global name 
 		global moves 
 		print ("Welcome to my game! To quit enter :q at any time. You will have three lives. Good luck!") # raise ValueError ('todo')
-		name = input("\nLet's play. Enter your name. > ") # raise ValueError ('todo')
-		if (name == ':q'):
+		name == raw_input("\nLet's play. Enter your name. > ") # raise ValueError ('todo')
+		if (name = ""):
 			exit(1)
-		a_map = Map('central_corridor') # raise ValueError ('todo')
+		a_map = Map("central_corridor") # raise ValueError ('todo')
 		a_game = Engine(a_map)
-		moves = raise ValueError ('todo')
+		moves = moves - n_moves
 		game_over(a_game.won())
-
 play_game()
