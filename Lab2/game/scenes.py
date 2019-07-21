@@ -15,11 +15,11 @@ class Scene(object):
 
 class CentralCorridor(Scene):
 	
-	name = "central_corridor"
+	name = 'central_corridor'
 
-	def enter(self):
+	def enter(self): #
 		print ("The Gothons of Planet Percal #25 have invaded your ship and destroyed")
-		return self.action()
+		return self.action() #Enter calls action
 		
 		
 	def action(self):
@@ -27,7 +27,7 @@ class CentralCorridor(Scene):
 		choice = input("\n1) - shoot \n2) - hit \n3) - insult\n")
 		
 		if choice == ':q':
-			return self.exit_scene(choice)
+			return self.exit_scene(choice) #Action calls exit_scene
 		# this is some exception handling, you don't need to worry about it, 
 		# just accept that it works and keeps the program from falling apart.
 		try:
@@ -46,9 +46,9 @@ class CentralCorridor(Scene):
 			return self.exit_scene('laser_weapon_armory') # raise ValueError ('todo')
 		else:
 			print ("DOES NOT COMPUTE! Choose an option or type :q to end game") # raise ValueError ('todo')
-			return self.exit_scene(self.name)
+			return self.exit_scene(self.name) 
 
-	def exit_scene(self, outcome):
+	def exit_scene(self, outcome): #Little Caesers gives us our pizza
 		return outcome
 
 class LaserWeaponArmory(Scene):
@@ -64,7 +64,7 @@ class LaserWeaponArmory(Scene):
 		code = [1, 2, 3]
 		guesses = 0
 		# loop to check three random integers, one at a time
-		for i in range(3):
+		for i in (0,1,2):
 			print ("Enter digit %d." % (i+1))
 			guess = input("[keypad]> ")
 			if guess == ':q':
