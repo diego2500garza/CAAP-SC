@@ -12,15 +12,21 @@ class Map(object):
 				'foot_steps': S.Foot_Steps(),
 				#Hallway Path
 				'hallway': S.Hallway(),
+				'infirmary' : S.Infirmary(),
 				'storage': S.Storage(),
+			
 				'box' : S.Box(),
 				'escape' : S.Escape(),
+
 				'ask' : S.Ask(),
 				'boarding' : S.Boarding(),
+				'incoming' : S.Incoming(),
 				
 				#Others Path
 				'others' : S.Others(),
 				'pub_Entrance' : S.Pub(),
+				'poker' : S.Poker(),
+				'winnah' : S.Winnah(),
 
 				#Exit
 				'exit' : S.Exit(),

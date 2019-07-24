@@ -1,5 +1,5 @@
 # imports random madule form library
-from random import randint
+import random
 from death import Death
 
 # the base class for the scenes. 
@@ -39,15 +39,24 @@ class CentralCorridor(Scene):
 		print ("What will you do?")
 		choice = input("\n1) - shoot \n2) - hit \n3) - insult\n")
 		
-		if choice == ':q':
-			return self.exit_scene(choice) #Action calls exit_scene
+		if (choice == ':q'):
+			return self.exit_scene(choice)
+		try:
+			choice = int(choice)
+		except ValueError:
+			print("That is not an integer!")
+			return self.exit_scene(self.name)
+
+
+
+		 #Action calls exit_scene
 		# this is some exception handling, you don't need to worry about it, 
 		# just accept that it works and keeps the program from falling apart.
 		try:
 		   choice = int(choice)
-		except (1, 2, 3):
-		   print("That's not an option!")
-		   return self.exit_scene(self.name)
+		except ValueError:
+			print("That is not an integer!")
+			return self.exit_scene(self.name)
 		if int(choice) == 1:
 			print ("Quick on the draw you yank out your blaster and fire it at the Gothon.")
 			return self.exit_scene('death') # raise ValueError ('todo')
@@ -74,10 +83,10 @@ class LaserWeaponArmory(Scene):
 
 	def action(self):
 		print ("There's a keypad lock on the box")
-		code = [1, 2, 3]
+		code = [6, 1, 9]
 		guesses = 0
 		# loop to check three random integers, one at a time
-		for i in (0,1,2):
+		for i in range(3):
 			print ("Enter digit %d." % (i+1))
 			guess = input("[keypad]> ")
 			if guess == ':q':
@@ -85,27 +94,27 @@ class LaserWeaponArmory(Scene):
 			try:
 			   guess = int(guess)
 			except ValueError:
-			   print("That's not an int!")
-			   return self.exit_scene(self.name)
-			while int(guess) != code[i] and guesses <10:
+				print("That is not an integer!")
+				return self.exit_scene(self.name)
+
+			while guess != code[i] and guesses <10:
 				print ("BZZZZEDDD!")
 				guesses += 1
-				guess =input("[keypad]> ")
+				guess = input("[keypad]> ")
 				if guess == ':q':
 					return self.exit_scene(guess)
 				try:
 				   guess = int(guess)
 				except ValueError:
-				   print("That's not an int!")
-				   guess = -1
-		
+				   print("That is not an integer!")
+				   guess -= 1
+
 		if guesses < 10:
 			print ("The container clicks open and the seal breaks, letting gas out.")
 			return self.exit_scene('guards')
 		else:
 			print ("The lock buzzes one last time and then you hear a sickening BOOM")
 			return self.exit_scene('death')
-
 	def exit_scene(self, outcome):
 		return outcome
 
@@ -119,7 +128,7 @@ class Guards(Scene):
 		return self.action()
 
 	def action(self):
-		choice = input("\n1) -  shoot them \n2) - punch them \n3) - try reasoning with them\n")
+		choice = input("\n1) - Shoot them \n2) - Punch them \n3) - Try reasoning with them\n")
 		
 		if choice == ':q':
 			return self.exit_scene(choice) #Action calls exit_scene
@@ -127,9 +136,9 @@ class Guards(Scene):
 		# just accept that it works and keeps the program from falling apart.
 		try:
 		   choice = int(choice)
-		except (1, 2, 3):
-		   print("That's not an option!")
-		   return self.exit_scene(self.name)
+		except ValueError:
+			print("That is not an option!")
+			return self.exit_scene(self.name)
 		if int(choice) == 1:
 			print ("You blast all three security guards to death! However, the loud blast alerted others...")
 			return self.exit_scene('foot_steps')
@@ -156,16 +165,16 @@ class Foot_Steps(Scene):
 		return self.action()
 
 	def action(self):
-		choice = input("\n1) -  Run away! \n2) - Put on uniform of one of the dead guards! \n3) - Get ready for the ultimate shootout!\n")
+		choice = input("\n1) - Run away! \n2) - Put on uniform of one of the dead guards! \n3) - Get ready for the ultimate shootout!\n")
 		
 		if choice == ':q':
 			return self.exit_scene(choice) 
 
 		try:
 		   choice = int(choice)
-		except (1, 2, 3):
-		   print("That's not an option!")
-		   return self.exit_scene(self.name)
+		except ValueError:
+			print("That is not an option!")
+			return self.exit_scene(self.name)
 		if int(choice) == 1:
 			print ("Your quick animalistic instincts make you run as fast as possible. You go left, then right, then head up to some stairs...")
 			return self.exit_scene('hallway')
@@ -193,18 +202,18 @@ class Others(Scene):
 		return self.action()
 
 	def action(self):
-		choice = input("\n1) -  Say that an escapee ran away through the hallway up ahead. \n2) - Pretend like nothing happened and try walking away. \n3) - Claim ignorance. You don't know what happened.\n")
+		choice = input("\n1) - Say that an escapee ran away through the hallway up ahead. \n2) - Pretend like nothing happened and try walking away. \n3) - Claim ignorance. You don't know what happened.\n")
 		
 		if choice == ':q':
 			return self.exit_scene(choice) 
 
 		try:
 		   choice = int(choice)
-		except (1, 2, 3):
-		   print("That's not an option!")
-		   return self.exit_scene(self.name)
+		except ValueError:
+			print("That is not an option!")
+			return self.exit_scene(self.name)
 		if int(choice) == 1:
-			print ("Smart, the guards keep on the hallway and you successfully distract them as you continue your journey")
+			print ("Smart, the guards keep on the hallway and you successfully distract them as you continue your journey and decide you want a drink at the pub.")
 			return self.exit_scene('pub_Entrance')
 		elif int(choice) == 2:
 			print ("what do you expect? They are suspicious and notice your badge doesn't match your appearance. They arrest you and kill you. dummy")
@@ -219,19 +228,169 @@ class Others(Scene):
 	def exit_scene(self,outcome):
 		return outcome
 
-# class Pub(Scene):
+class Pub(Scene):
 
-# 	name = 'pub_Entrance'
+	name = 'pub_Entrance'
 
-# 	def enter(self):
-# 		return self.action()
+	def enter(self):
+		print("Before you enter the pub, you need to prove your worth and show the bouncer you're gonna be lucky tonight. The test? ROCK PAPER SCISSORS!!!")
+		return self.action()
 
-# 	def action(self):
+	def action(self):
+		print("First to 3")
+
+		games_played = 0
+		my_wins = 0
+		enemy_wins = 0
+
+		while games_played < 3 or my_wins == enemy_wins:
+			for i in range(3):
+				choices = ['ROCK', 'PAPER', 'SCISSORS']
+
+				enemy = random.randint(1,3)
+				enemy_choice = choices[(enemy)-1]
+
+				score = (my_wins, "-", enemy_wins)
+				print(score)
+				choice = input("\n1) - ROCK \n2) - PAPER \n3) - SCISSORS\n")
+
+				if choice == ':q':
+					return self.exit_scene(choice) 
+
+				try:
+				   choice = int(choice)
+				except ValueError:
+					print("That is not an integer!")
+					return self.exit_scene(self.name)
+
+				my_choice = choices[(choice)-1]
+
+				print('You chose', my_choice)
+
+				print("Enemy chose",enemy_choice)
 
 
-# 	def exit_scene(self,outcome):
-# 		return outcome
+				if my_choice == 'ROCK' and enemy_choice == 'SCISSORS':
+					a = 'You win'
+					print(a)
+					my_wins +=1
+					games_played += 1
+				if my_choice == 'SCISSORS' and enemy_choice == 'PAPER':
+					a = 'You win'
+					print(a)
+					my_wins +=1
+					games_played += 1
+				if my_choice == 'PAPER' and enemy_choice == 'ROCK':
+					a = 'You win'
+					print(a)
+					my_wins +=1
+					games_played += 1
+				if enemy_choice == 'ROCK' and my_choice == 'SCISSORS':
+					a = 'You lost'
+					print(a)
+					enemy_wins +=1
+					games_played += 1
+				if enemy_choice == 'SCISSORS' and my_choice == 'PAPER':
+					a = 'You lost'
+					print(a)
+					enemy_wins +=1
+					games_played += 1
+				if enemy_choice == 'PAPER' and my_choice == 'ROCK':
+					a = 'You lost'
+					print(a)
+					enemy_wins +=1
+					games_played += 1
 
+				if my_choice == enemy_choice:
+					print ("tie")
+
+		if my_wins > enemy_wins:
+			print("Good job!")
+			return self.exit_scene('poker')
+			
+		if enemy_wins > my_wins:
+			print("GG")
+			return self.exit_scene('death')
+
+	def exit_scene(self,outcome):
+		return outcome
+
+
+class Poker(Scene):
+	
+	name = 'poker'
+
+	def enter(self):
+		print("You find a poker match to get yourself into. You're playing along well enough. The bridge is ace of spades, two of spades, queen of hearts, ten of spades, and 7 of clubs.")
+		return self.action()
+
+	def action(self):
+		print("Everybody's folded except one person so far and you need to win. A mirror across the room shows he has king of hearts and jack of clubs.")
+		print("You got a 3 of hearts and 5 of clubs and its his turn after you.")
+		print("What do you do?")
+		
+		choice = input("\n1) -  Fold. \n2) - Raise. \n3) - Check.\n")
+		
+		if choice == ':q':
+			return self.exit_scene(choice) 
+
+		try:
+		   choice = int(choice)
+		except ValueError:
+			print("That is not an option!")
+			return self.exit_scene(self.name)
+		if int(choice) == 1:
+			print ("wow u suck. the night goes worse and worse until somebody discovers the blood on your uniform. They beat you to death.")
+			return self.exit_scene('death')
+		elif int(choice) == 2:
+			print ("He doesn't expect it and folds. You win and get all da money!")
+			return self.exit_scene('winnah')
+		elif int(choice) == 3:
+			print("He calls your bluff and raises. You can't help but to call. He ends up winning and your night goes worse and worse until somebody discovers the blood on your uniform. They beat you to death.")	
+			return self.exit_scene('death')
+		else:
+			print ("DOES NOT COMPUTE! Choose an option or type :q to end game") # raise ValueError ('todo')
+			return self.exit_scene(self.name)
+
+	def exit_scene(self,outcome):
+		return outcome
+
+class Winnah(Scene):
+
+	name = 'winnah'
+
+	def enter(self):
+		print("The entire pub goes crazy and congratulates you! You're not one for social events and are starting to get anxiety about what you should say.")
+		return self.action()
+
+	def action(self):
+		print("What do you say?")
+		
+		choice = input("\n1) - Thank everybody around and call for another game to keep the night going. \n2) - Say nothing and simply shake the hand of your opponent. \n3) - Call for a round of alcoholic beverages.\n")
+		
+		if choice == ':q':
+			return self.exit_scene(choice) 
+
+		try:
+		   choice = int(choice)
+		except ValueError:
+			print("That is not an option!")
+			return self.exit_scene(self.name)
+		if int(choice) == 1:
+			print ("The night keeps going and you realize that these aliens are actually cool people. Instead of trying to escape, you simply stay with them and become the first human to travel acroess the galaxy.")
+			return self.exit_scene('finished')
+		elif int(choice) == 2:
+			print ("You realize the opponent has a gun in his hand too late and he shoots you in your gut. The noise around you covers the shot.")
+			return self.exit_scene('death')
+		elif int(choice) == 3:
+			print("Everybody gets drunk, you find the exit and board the ship.")	
+			return self.exit_scene('exit')
+		else:
+			print ("DOES NOT COMPUTE! Choose an option or type :q to end game") # raise ValueError ('todo')
+			return self.exit_scene(self.name)
+
+	def exit_scene(self,outcome):
+		return outcome
 
 #Hallway pathway
 class Hallway(Scene):
@@ -243,16 +402,16 @@ class Hallway(Scene):
 		return self.action()
 
 	def action(self):
-		choice = input("\n1) -  Storage, maybe you can hide somewhere in there? \n2) - The infimary! There probably isn't anybody in there. \n")
+		choice = input("\n1) - Storage, maybe you can hide somewhere in there? \n2) - The Infimary! There probably isn't anybody in there. \n")
 		
 		if choice == ':q':
 			return self.exit_scene(choice) 
 
 		try:
 		   choice = int(choice)
-		except (1, 2):
-		   print("That's not an option!")
-		   return self.exit_scene(self.name)
+		except ValueError:
+			print("That is not an option!")
+			return self.exit_scene(self.name)
 		if int(choice) == 1:
 			print ("Left has always been your lucky hand! The Storage door is only a couple steps away.")
 			return self.exit_scene('storage')
@@ -280,36 +439,41 @@ class Storage(Scene):
 		print ("There's a keypad lock on the door")
 		code = []
 		for i in range(3):
-			number = random.randint(1,10)
-			code.append(number)
+		    number = random.randint(1,10)
+		    code.append(number)
 		guesses = 0
 		# loop to check three random integers, one at a time
-		for i in (3):
-			print ("Enter digit %d." % (i+1))
-			guess = input("[keypad]> ")
-			if guess == ':q':
-				return self.exit_scene(guess)
-			try:
-			   guess = int(guess)
-			except 0 != guess//2:
-			   print("That's not an int!")
-			   return self.exit_scene(self.name)
-			while int(guess) != code[i] and guesses <5:
-				print ("The guards are getting closer!")
-				guesses += 1
-				guess =input("[keypad]> ")
-				if guess == ':q':
-					return self.exit_scene(guess)
-				try:
-				   guess = int(guess)
+		for i in range(3):
+		    print ("Enter digit %d." % (i+1))
+		    guess = input("[keypad]> ")
+		    if guess == ':q':
+		    	return self.exit_scene(self.name)
+		    try:
+		       guess = int(guess)
+		    except ValueError:
+		    	print("That is not an integer!")
+		    	return self.exit_scene(self.name)
+		    while int(guess) != code[i] and guesses <5:
+		        print ("The guards are getting closer!")
+		        guesses += 1
+		        guess =input("[keypad]> ")
+		        if guess == ':q':
+		            return self.exit_scene(guess)
+		        try:
+		        	guess = int(guess)
+		        except ValueError:
+		        	print("That is not an integer!")
+		        	guess -= 1
 
-		
+
 		if guesses < 5:
-			print ("The Storage door opened! Nice!")
-			return self.exit_scene('box')
+		    print ("The Storage door opened! Nice!")
+		    return self.exit_scene('box')
 		else:
-			print ("You took too long. The guards find you and ray gun your butt to death.")
-			return self.exit_scene('death')
+		    print ("You took too long. The guards find you and ray gun your butt to death.")
+		    return self.exit_scene('death')
+
+
 
 	def exit_scene(self,outcome):
 		return outcome
@@ -330,9 +494,9 @@ class Box(Scene):
 
 		try:
 		   choice = int(choice)
-		except (1, 2, 3):
-		   print("That's not an option!")
-		   return self.exit_scene(self.name)
+		except ValueError:
+			print("That is not an option!")
+			return self.exit_scene(self.name)
 		if int(choice) == 1:
 			print ("You are really dumb. They see you throw it and shoot you instantly.")
 			return self.exit_scene('death')
@@ -367,8 +531,8 @@ class Escape(Scene):
 
 		try:
 		   choice = int(choice)
-		except (1, 2, 3):
-		   print("That's not an option!")
+		except ValueError:
+		   print("That is not an option!")
 		   return self.exit_scene(self.name)
 		if int(choice) == 1:
 			print ("You enter the war room and see top generals discussing war plans. They see you and shoot you.")
@@ -403,8 +567,8 @@ class Infirmary(Scene):
 
 		try:
 		   choice = int(choice)
-		except (1, 2, 3):
-		   print("That's not an option!")
+		except ValueError:
+		   print("That is not an option!")
 		   return self.exit_scene(self.name)
 		if int(choice) == 1:
 			print ("Yeah, they don't help you. They all jump you and punch you to death.")
@@ -438,8 +602,8 @@ class Ask(Scene):
 
 		try:
 		   choice = int(choice)
-		except (1, 2, 3):
-		   print("That's not an option!")
+		except ValueError:
+		   print("That is not an option!")
 		   return self.exit_scene(self.name)
 		if int(choice) == 1:
 			print ("Haha! You run fast to the exit, but as you reach for the door, you get shot in the back.")
@@ -462,14 +626,100 @@ class Boarding(Scene):
 	name = 'boarding'
 
 	def enter(self):
-		print("")
+		print("You're boarding the ship that looks like one you can pilot, but there's something weird to get in... a keypad! You hear faint sounds of footsteps coming. The guards must've heard you shoot.")
 		return self.action()
 
 	def action(self):
 
+		print ("Hurry!")
+		code = []
+		for i in range(3):
+		    number = random.randint(1,10)
+		    code.append(number)
+		guesses = 0
+		# loop to check three random integers, one at a time
+		for i in range(3):
+		    print ("Enter digit %d." % (i+1))
+		    guess = input("[keypad]> ")
+		    if guess == ':q':
+		    	return self.exit_scene(self.name)
+		    try:
+		       guess = int(guess)
+		    except ValueError:
+		    	print("That is not an integer!")
+		    while int(guess) != code[i] and guesses <5:
+		        print ("The guards are getting closer!")
+		        guesses += 1
+		        guess =input("[keypad]> ")
+		        if guess == ':q':
+		            return self.exit_scene(guess)
+		        try:
+		        	guess = int(guess)
+		        except ValueError:
+		        	print("That is not an integer!")
+		        	guess -= 1
+
+
+		if guesses < 5:
+		    print ("The door opened! Nice! you can start boarding yourself and the hostage.")
+		    return self.exit_scene('incoming')
+		else:
+		    print ("You took too long. The guards find you and ray gun your butt to death.")
+		    return self.exit_scene('death')
+
+	def exit_scene(self,outcome):
+		return outcome
+
+
+class Incoming(Scene):
+
+	name = 'incoming'
+
+	def enter(self):
+		print("They're all scared! You want to ask them something. What should you do?")
+		return self.action()
+
+	def action(self):
+		choice = input("\n1) -  Hide under a panel - Star Wars style! \n2) - Place the hostage outside of the boarding door of the ship. \n3) - Star shooting!\n")
+
+		if choice == ':q':
+			return self.exit_scene(choice) 
+
+		try:
+		   choice = int(choice)
+		except ValueError:
+		   print("That is not an option!")
+		   return self.exit_scene(self.name)
+		if int(choice) == 1:
+			print ("Smart! But they find you. They beat you to death.")
+			return self.exit_scene('death')
+		elif int(choice) == 2:
+			print ("The aliens are too scared to ask for help. You get to the exit and walk in with your hostage.")
+			return self.exit_scene('exit')
+		elif int(choice) == 3:
+			print("They vastly outpower your small gun. You keep shooting until your last blast. They shoot you chest and gasp your last breath..")	
+			return self.exit_scene('death')
+		else:
+			print ("DOES NOT COMPUTE! Choose an option or type :q to end game") # raise ValueError ('todo')
+			return self.exit_scene(self.name)
 
 	def exit_scene(self,outcome):
 		return outcome
 
 
 
+#Exit Scene
+class Exit(Scene):
+
+	name = 'exit'
+
+	def enter(self):
+		print("GG")
+		return self.action()
+
+	def action(self):
+		print("GG")
+		return self.exit_scene('finished')
+
+	def exit_scene(self,outcome):
+		return outcome
