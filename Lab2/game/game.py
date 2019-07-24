@@ -10,7 +10,7 @@ from game_engine import Engine
 # global variables to keep track of score, player, and leaderboard
 moves = 0
 name = ''
-#leaderboard = Leaderboard()
+leaderboard = Leaderboard()
 
 
 # for any function, we are getting the RETURN VALUEEE
@@ -22,15 +22,16 @@ name = ''
 def game_over(won):
 	global name
 	global moves
+	score = Score(name, moves)
 	print ("\nGame Over\n")
 	print("Moves taken:", moves)
 	if won == True:
 		print("Congratulations! You won!\n\n")
+		if leaderboard.update(score) == True:
+			leaderboard.insert(score)
 	else:
 		print("lol, u suk")
-	# score = Score(name, moves)
-	# if leaderboard.update(score):
-	# 	leaderboard.insert(score)
+	leaderboard.print_board()
 	name = ""
 	moves = 0
 	exit(1)

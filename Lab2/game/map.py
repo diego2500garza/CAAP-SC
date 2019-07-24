@@ -8,6 +8,23 @@ class Map(object):
 	#key is strings, value is function
 	scenes = {'central_corridor' : S.CentralCorridor(), #class names bc they're capitalized. calling class name __init__. String keys are assigned to the scene object. They're scene objects because () calling the constructorn function inside class
 				'laser_weapon_armory' : S.LaserWeaponArmory(),
+				'guards' : S.Guards(),
+				'foot_steps': S.Foot_Steps(),
+				#Hallway Path
+				'hallway': S.Hallway(),
+				'storage': S.Storage(),
+				'box' : S.Box(),
+				'escape' : S.Escape(),
+				'ask' : S.Ask(),
+				'boarding' : S.Boarding(),
+				
+				#Others Path
+				'others' : S.Others(),
+				'pub_Entrance' : S.Pub(),
+
+				#Exit
+				'exit' : S.Exit(),
+				#Death
 				'death' : Death()
 				# raise ValueError ('todo')
 				}

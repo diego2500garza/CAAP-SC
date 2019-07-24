@@ -20,7 +20,8 @@ class Engine(object):
 		while (next_scene_name != 'finished' and self.lives > 0):
 			print ("\n*******************************************************************") #raise ValueError ('todo')
 			# print(current_scene)
-			next_scene_name = current_scene.enter() #calling enter bc of (). Assigns next_scene_name as whatever comes from enter function
+			next_scene_name = current_scene.enter() 
+			#calling enter bc of (). Assigns next_scene_name as whatever comes from enter function
 			if (next_scene_name == ':q'):
 				exit(1)
 			elif (next_scene_name == 'death'): #goes through the scene of died (goes through death file)
