@@ -25,6 +25,7 @@ def game_over(won):
 	score = Score(name, moves)
 	print ("\nGame Over\n")
 	print("Moves taken:", moves,"\n\n")
+	print("nice")
 	if won == True:
 		print("Congratulations! You won!\n\n")
 		if leaderboard.update(score) == True:
