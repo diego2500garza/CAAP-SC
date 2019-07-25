@@ -49,7 +49,7 @@ class CentralCorridor(Scene):
 
 
 
-		 #Action calls exit_scene
+		#Action calls exit_scene
 		# this is some exception handling, you don't need to worry about it, 
 		# just accept that it works and keeps the program from falling apart.
 		try:
@@ -75,7 +75,7 @@ class CentralCorridor(Scene):
 
 class LaserWeaponArmory(Scene):
 	
-	name = "armory"
+	name = 'armory'
 
 	def enter(self):
 		print ("You do a dive roll into the Weapon Armory, crouch and scan the room")
@@ -237,80 +237,71 @@ class Pub(Scene):
 		return self.action()
 
 	def action(self):
-		print("First to 3")
+		print("Best out of 3")
 
 		games_played = 0
 		my_wins = 0
 		enemy_wins = 0
 
-		while games_played < 3 or my_wins == enemy_wins:
-			for i in range(3):
-				choices = ['ROCK', 'PAPER', 'SCISSORS']
+		for i in range(100):
+			choices = ['ROCK', 'PAPER', 'SCISSORS']
 
-				enemy = random.randint(1,3)
-				enemy_choice = choices[(enemy)-1]
+			enemy = random.randint(1,3)
+			enemy_choice = choices[(enemy)-1]
 
-				score = (my_wins, "-", enemy_wins)
-				print(score)
-				choice = input("\n1) - ROCK \n2) - PAPER \n3) - SCISSORS\n")
+			print("\n\nYou:", my_wins)
+			print("Bouncer:", enemy_wins)
 
-				if choice == ':q':
-					return self.exit_scene(choice) 
+			choice = input("\n1) - ROCK \n2) - PAPER \n3) - SCISSORS\n")
 
-				try:
-				   choice = int(choice)
-				except ValueError:
-					print("That is not an integer!")
-					return self.exit_scene(self.name)
+			if choice == ':q':
+				return self.exit_scene(choice) 
 
-				my_choice = choices[(choice)-1]
+			try:
+			   choice = int(choice)
+			except ValueError:
+				print("That is not an integer!")
+				return self.exit_scene(self.name)
 
-				print('You chose', my_choice)
+			my_choice = choices[(choice)-1]
+			print('You chose', my_choice)
+			print("Enemy chose",enemy_choice)
+			games_played +=1
 
-				print("Enemy chose",enemy_choice)
+			if my_choice == 'ROCK' and enemy_choice == 'SCISSORS':
+				print('You win')
+				my_wins +=1
+			if my_choice == 'SCISSORS' and enemy_choice == 'PAPER':
+				print('You win')
+				my_wins +=1
+			if my_choice == 'PAPER' and enemy_choice == 'ROCK':
+				print('You win')
+				my_wins +=1
+			if enemy_choice == 'ROCK' and my_choice == 'SCISSORS':
+				print('You lost')
+				enemy_wins +=1
+			if enemy_choice == 'SCISSORS' and my_choice == 'PAPER':
+				print('You lost')
+				enemy_wins +=1
+			if enemy_choice == 'PAPER' and my_choice == 'ROCK':
+				print('You lost')
+				enemy_wins +=1
 
+			if my_choice == enemy_choice:
+				print ("tie")
+				games_played -=1
 
-				if my_choice == 'ROCK' and enemy_choice == 'SCISSORS':
-					a = 'You win'
-					print(a)
-					my_wins +=1
-					games_played += 1
-				if my_choice == 'SCISSORS' and enemy_choice == 'PAPER':
-					a = 'You win'
-					print(a)
-					my_wins +=1
-					games_played += 1
-				if my_choice == 'PAPER' and enemy_choice == 'ROCK':
-					a = 'You win'
-					print(a)
-					my_wins +=1
-					games_played += 1
-				if enemy_choice == 'ROCK' and my_choice == 'SCISSORS':
-					a = 'You lost'
-					print(a)
-					enemy_wins +=1
-					games_played += 1
-				if enemy_choice == 'SCISSORS' and my_choice == 'PAPER':
-					a = 'You lost'
-					print(a)
-					enemy_wins +=1
-					games_played += 1
-				if enemy_choice == 'PAPER' and my_choice == 'ROCK':
-					a = 'You lost'
-					print(a)
-					enemy_wins +=1
-					games_played += 1
-
-				if my_choice == enemy_choice:
-					print ("tie")
-
-		if my_wins > enemy_wins:
-			print("Good job!")
+			if my_wins == 3:
+				print("Good job!")
+				break
+			if enemy_wins == 3:
+				print("DEAD")
+				break
+		if my_wins == 3:
 			return self.exit_scene('poker')
-			
-		if enemy_wins > my_wins:
-			print("GG")
+		if enemy_wins == 3:
 			return self.exit_scene('death')
+
 
 	def exit_scene(self,outcome):
 		return outcome
@@ -714,11 +705,11 @@ class Exit(Scene):
 	name = 'exit'
 
 	def enter(self):
-		print("GG")
+		print("Good job! You're able to leave and get back to your hometown.")
 		return self.action()
 
 	def action(self):
-		print("GG")
+		print("Sadly, nobody believes what you say. But you're at least back with your loved ones.")
 		return self.exit_scene('finished')
 
 	def exit_scene(self,outcome):

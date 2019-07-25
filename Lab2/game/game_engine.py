@@ -4,11 +4,12 @@ class Engine(object):
 
 	# global variables to keep track of game status and live count
 	escaped = False
-	lives = 3
+	lives = 0
 
 	# initializes the map in the game
-	def __init__(self, scene_map):
+	def __init__(self, scene_map, lives):
 		self.scene_map = scene_map #a_map gets assigned to scene_map, then initializing it to self.scene_map
+		self.lives = lives
 
 	# takes current scene, plays it, gets the next scene, and updates the game
 	# should also return the number of moves the game takes in total
@@ -20,6 +21,7 @@ class Engine(object):
 		while (next_scene_name != 'finished' and self.lives > 0):
 			print ("\n*******************************************************************") #raise ValueError ('todo')
 			# print(current_scene)
+			print("You have",self.lives,"lives left")
 			next_scene_name = current_scene.enter() 
 			#calling enter bc of (). Assigns next_scene_name as whatever comes from enter function
 			if (next_scene_name == ':q'):
