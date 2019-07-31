@@ -1,0 +1,25 @@
+Assignment 1
+CAAP CMSC 101, Summer 2019
+
+1. Hello world:						2/2 pts
+2. Converter:						4/6 pts
+3. Unit Conversion:					4/6 pts
+4. Slope:							9/10 pts
+5. Fibonacci Sequence:				3/6 pts
+6. Part 2 - Change:					23/20 pts
+7. Part 4:							5/10 pts
+
+Readme file							-2/0 pts
+
+Total								48/60 pts
+
+Comments:
+	-P2: Does not run in python3
+	-P3: Does not run in python3
+	-P4: Avoid using reserved words in languages for any variables.
+	-P5: Does not run in python3. Input fails, as you are not casting string to an int value. 
+	-P6: Incorrect number of pennies.
+		-Challenge asks to take into account the number of coins you have when calculating the change, not to add them up.
+	-P7: Answers are lacking in detail and effort.
+	-Your README file should be clearer, and well formatted for users to reference easily (headings, sections, etc.).
+	-MAKE SURE TO DOCUMENT ALL OF YOUR CODE!
