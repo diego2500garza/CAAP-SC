@@ -1,16 +1,20 @@
 Lab 0
 CAAP CMSC 101, Summer 2019
 
-Task 1: 				_/10 points
-Task 2: 				_/5 points
-Task 3: 				_/5 points
-Task 4:					_/5 points
-Task 5:					_/5 points
-Task 6: 				_/5 points
-Task 7: 				_/5 points
-Task 8:					_/5 points
-Task 9:					_/5 points
-Task 10:				_/10 points
-Task 11 (Bonus):		_/0 points
+Task 1: 				10/10 points
+Task 2: 				5/5 points
+Task 3: 				5/5 points
+Task 4:					5/5 points
+Task 5:					5/5 points
+Task 6: 				4/5 points
+Task 7: 				5/5 points
+Task 8:					5/5 points
+Task 9:					5/5 points
+Task 10:				9/10 points
+Task 11 (Bonus):		2/0 points
 
-Total: 					_/60
+Total: 					60/60
+
+Comments:
+	-T6: Also check out git --amend
+	-Task responses should be clearer/more organized.
